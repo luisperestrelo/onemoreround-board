@@ -104,12 +104,12 @@
       "title": "Add a Koonzi",
       "priority": "high",
       "difficulty": "high",
-      "assignee": "",
+      "assignee": "Kruise",
       "done": false,
       "notes": "",
-      "updatedAt": 1789849362126,
+      "updatedAt": 1789849365121,
       "id": "c_mu8qo9cromll1",
-      "order": 4000,
+      "order": 1500,
       "createdAt": 1789843611483
     },
     {
