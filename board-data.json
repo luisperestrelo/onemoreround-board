@@ -111,6 +111,18 @@
       "id": "c_mu8qo9cromll1",
       "order": 1000,
       "createdAt": 1789843611483
+    },
+    {
+      "title": "Make the player understand that crafting is BIG character power",
+      "priority": "medium",
+      "difficulty": "unknown",
+      "assignee": "",
+      "done": false,
+      "notes": "",
+      "updatedAt": 1789844542982,
+      "id": "c_mu8r883qly3nz",
+      "order": 2000,
+      "createdAt": 1789844542982
     }
   ]
 }
