@@ -69,12 +69,12 @@
       "title": "Add more curses",
       "priority": "medium",
       "difficulty": "medium",
-      "assignee": "",
+      "assignee": "Greyy",
       "done": false,
       "notes": "",
-      "order": 6000,
+      "order": 4000,
       "createdAt": 1789776005000,
-      "updatedAt": 1789776005000
+      "updatedAt": 1789840649405
     },
     {
       "id": "storm-cage-sound",
