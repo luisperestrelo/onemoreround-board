@@ -171,6 +171,18 @@
       "id": "c_mu8rdlp90n4ua",
       "order": 3500,
       "createdAt": 1789844793885
+    },
+    {
+      "title": "Leaderboard Improvements",
+      "priority": "spare",
+      "difficulty": "medium",
+      "assignee": "",
+      "done": false,
+      "notes": "Let ppl see more of people's builds somehow",
+      "updatedAt": 1789846032303,
+      "id": "c_mu8s459r6kx48",
+      "order": 6000,
+      "createdAt": 1789846032303
     }
   ]
 }
