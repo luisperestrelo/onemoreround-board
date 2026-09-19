@@ -21,12 +21,12 @@
       "title": "Sounds in general",
       "priority": "high",
       "difficulty": "unknown",
-      "assignee": "",
+      "assignee": "Kruise",
       "done": false,
       "notes": "",
-      "order": 2000,
+      "order": 1000,
       "createdAt": 1789776001000,
-      "updatedAt": 1789776001000
+      "updatedAt": 1789840614833
     },
     {
       "id": "add-warrior",
