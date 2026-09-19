@@ -159,6 +159,18 @@
       "id": "c_mu8rdcvw0oydu",
       "order": 5000,
       "createdAt": 1789844782460
+    },
+    {
+      "title": "Improve Curse Descriptions for the new Curses",
+      "priority": "medium",
+      "difficulty": "low",
+      "assignee": "",
+      "done": false,
+      "notes": "",
+      "updatedAt": 1789844793885,
+      "id": "c_mu8rdlp90n4ua",
+      "order": 6000,
+      "createdAt": 1789844793885
     }
   ]
 }
