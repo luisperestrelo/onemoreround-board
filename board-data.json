@@ -33,12 +33,12 @@
       "title": "Add warrior",
       "priority": "high",
       "difficulty": "high",
-      "assignee": "",
+      "assignee": "Kruise",
       "done": false,
       "notes": "",
-      "order": 3000,
+      "order": 2000,
       "createdAt": 1789776002000,
-      "updatedAt": 1789776002000
+      "updatedAt": 1789840617025
     },
     {
       "id": "new-boss",
