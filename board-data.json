@@ -183,6 +183,18 @@
       "id": "c_mu8s459r6kx48",
       "order": 3500,
       "createdAt": 1789846032303
+    },
+    {
+      "title": "Buff Relics",
+      "priority": "medium",
+      "difficulty": "low",
+      "assignee": "",
+      "done": false,
+      "notes": "",
+      "updatedAt": 1789848909412,
+      "id": "c_mu8ttt9glpqrc",
+      "order": 6000,
+      "createdAt": 1789848909412
     }
   ]
 }
