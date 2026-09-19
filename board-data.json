@@ -123,6 +123,18 @@
       "id": "c_mu8r883qly3nz",
       "order": 2000,
       "createdAt": 1789844542982
+    },
+    {
+      "title": "Mini Crafting Tutorial?",
+      "priority": "spare",
+      "difficulty": "medium",
+      "assignee": "",
+      "done": false,
+      "notes": "",
+      "updatedAt": 1789844570465,
+      "id": "c_mu8r8tb5u077e",
+      "order": 3000,
+      "createdAt": 1789844570465
     }
   ]
 }
