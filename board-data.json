@@ -195,6 +195,18 @@
       "id": "c_mu8ttt9glpqrc",
       "order": 2500,
       "createdAt": 1789848909412
+    },
+    {
+      "title": "Camera Bullshit",
+      "priority": "high",
+      "difficulty": "medium",
+      "assignee": "",
+      "done": false,
+      "notes": "",
+      "updatedAt": 1789861720108,
+      "id": "c_mu91ge26fegi8",
+      "order": 6000,
+      "createdAt": 1789861720111
     }
   ]
 }
