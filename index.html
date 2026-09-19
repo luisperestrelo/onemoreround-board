@@ -241,8 +241,8 @@
     <p class="muted">To add or move cards, paste a GitHub token with write access to the board repo. It is stored only in this browser and sent only to github.com.</p>
     <label class="fld"><span class="fld-label">GitHub access token</span><input id="set-token" type="password" autocomplete="off" placeholder="ghp_..."></label>
     <ol class="steps">
-      <li>Open <a id="token-link" href="https://github.com/settings/tokens/new?scopes=repo&amp;description=One+More+Round+board" target="_blank" rel="noopener">the classic token page</a> (scope is pre-filled).</li>
-      <li>Confirm the <b>repo</b> scope is ticked, pick an expiration, and Generate token.</li>
+      <li>Open <a id="token-link" href="https://github.com/settings/tokens/new?scopes=public_repo&amp;description=One+More+Round+board" target="_blank" rel="noopener">the classic token page</a>. It must be a <b>classic</b> token, not fine-grained.</li>
+      <li>Confirm <b>public_repo</b> is ticked, pick an expiration, and Generate token.</li>
       <li>Copy the token (starts with ghp_) and paste it above.</li>
     </ol>
     <div class="modal-foot"><button class="btn danger" id="set-remove" hidden>Remove token</button><div class="spacer"></div><button class="btn ghost" id="set-cancel">Cancel</button><button class="btn primary" id="set-save">Save</button></div>
@@ -340,9 +340,10 @@
       });
   }
   function handleApiErr(err) {
-    var s = err && err.status;
-    if (s === 401) toast("GitHub rejected your token. Update it in Settings.");
-    else if (s === 403) toast("GitHub blocked the request (rate limit or permissions).");
+    var s = err && err.status, msg = err && err.msg ? String(err.msg) : "";
+    if (s === 401) toast("GitHub rejected your token. Re-add it in Settings.");
+    else if (s === 403 && /rate limit/i.test(msg)) toast("Hit GitHub's rate limit. Wait a minute, then try again.");
+    else if (s === 403) toast("This token can't write to the board. Make a CLASSIC token with public_repo ticked (gear icon).");
     else if (s === 404) toast("Board repo or data file not found.");
     else if (s === 422) toast("GitHub could not save (" + (err.msg || "unprocessable") + ").");
     else toast("Network problem talking to GitHub.");
@@ -529,7 +530,7 @@
   function openSettings() {
     $("#set-token").value = state.token || "";
     $("#set-remove").hidden = !state.token;
-    $("#token-link").href = "https://github.com/settings/personal-access-tokens/new";
+    $("#token-link").href = "https://github.com/settings/tokens/new?scopes=public_repo&description=One+More+Round+board";
     $("#settings-backdrop").hidden = false;
     setTimeout(function () { $("#set-token").focus(); }, 30);
   }
