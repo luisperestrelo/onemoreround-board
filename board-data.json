@@ -81,12 +81,12 @@
       "title": "Fix Storm Cage sound bug",
       "priority": "medium",
       "difficulty": "low",
-      "assignee": "",
+      "assignee": "Greyy",
       "done": false,
       "notes": "",
-      "order": 7000,
+      "order": 3000,
       "createdAt": 1789776006000,
-      "updatedAt": 1789776006000
+      "updatedAt": 1789840637024
     },
     {
       "id": "totemic-bond-ui",
