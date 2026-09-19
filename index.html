@@ -295,14 +295,14 @@
     return false;
   }
   var PRIORITY_RANK = { extreme: 4, high: 3, medium: 2, low: 1 };
-  var DIFFICULTY_RANK = { high: 3, medium: 2, low: 1, unknown: 0 };
+  var DIFFICULTY_RANK = { low: 1, medium: 2, high: 3 };
   function laneCardsSorted(lane, person, excludeId) {
     var out = [];
     for (var i = 0; i < state.cards.length; i++) { var c = state.cards[i]; if (excludeId && c.id === excludeId) continue; if (inLane(c, lane, person)) out.push(c); }
     var m = state.sortMode;
     out.sort(function (a, b) {
       if (m === "priority") { var dp = (PRIORITY_RANK[b.priority] || 0) - (PRIORITY_RANK[a.priority] || 0); if (dp) return dp; }
-      else if (m === "difficulty") { var dd = (DIFFICULTY_RANK[b.difficulty] || 0) - (DIFFICULTY_RANK[a.difficulty] || 0); if (dd) return dd; }
+      else if (m === "difficulty") { var dd = (DIFFICULTY_RANK[a.difficulty] || 99) - (DIFFICULTY_RANK[b.difficulty] || 99); if (dd) return dd; }
       return (a.order || 0) - (b.order || 0);
     });
     return out;
