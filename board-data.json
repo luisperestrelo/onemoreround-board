@@ -45,12 +45,12 @@
       "title": "Add new boss",
       "priority": "high",
       "difficulty": "high",
-      "assignee": "",
+      "assignee": "Greyy",
       "done": false,
       "notes": "",
-      "order": 4000,
+      "order": 2000,
       "createdAt": 1789776003000,
-      "updatedAt": 1789776003000
+      "updatedAt": 1789840620082
     },
     {
       "id": "fps-improvements",
