@@ -1,0 +1,658 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>One More Round Board</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Manrope:wght@400;500;600;700;800&display=swap">
+<style>
+  :root {
+    --bg: #f2f0f7; --surface: #ffffff; --surface-2: #eceaf3; --elevate: #ffffff;
+    --text: #1b1922; --text-muted: #6a6577; --text-faint: #948fa3;
+    --border: #e3e0ec; --border-strong: #d2cee0;
+    --accent: #6a3fd0; --accent-2: #8b63e6; --accent-bg: #ece4fb; --accent-contrast: #ffffff;
+    --ok: #1c9e63; --ok-bg: #d9f0e4; --warn: #9a6a00; --warn-bg: #f6e7c4; --err: #c31f38; --err-bg: #f8d3d8;
+    --p-low: #12805c; --p-low-bg: #d9f0e6;
+    --p-medium: #9a6a00; --p-medium-bg: #f6e7c4;
+    --p-high: #bc4a10; --p-high-bg: #f8ddca;
+    --p-extreme: #c31f38; --p-extreme-bg: #f8d3d8;
+    --shadow: 0 1px 2px rgba(20,16,40,.06), 0 6px 18px rgba(20,16,40,.06);
+    --shadow-lift: 0 8px 30px rgba(20,16,40,.18);
+    --radius: 14px; --radius-sm: 9px;
+    --font-display: "Bricolage Grotesque", "Manrope", system-ui, sans-serif;
+    --font-ui: "Manrope", system-ui, -apple-system, Segoe UI, sans-serif;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #121019; --surface: #1d1a26; --surface-2: #17151f; --elevate: #232030;
+      --text: #ece9f4; --text-muted: #9993a8; --text-faint: #736d84;
+      --border: #2c2838; --border-strong: #3b3652;
+      --accent: #a78bff; --accent-2: #8b6df0; --accent-bg: #251b3d; --accent-contrast: #14101f;
+      --ok: #43d98a; --ok-bg: #163527; --warn: #f0c04a; --warn-bg: #3a3014; --err: #ff6b7a; --err-bg: #3d1a20;
+      --p-low: #52d6a2; --p-low-bg: #123528;
+      --p-medium: #f0c04a; --p-medium-bg: #3a3014;
+      --p-high: #ff8a55; --p-high-bg: #3c2214;
+      --p-extreme: #ff6b7a; --p-extreme-bg: #3d1a20;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 6px 18px rgba(0,0,0,.28);
+      --shadow-lift: 0 10px 34px rgba(0,0,0,.5);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #121019; --surface: #1d1a26; --surface-2: #17151f; --elevate: #232030;
+    --text: #ece9f4; --text-muted: #9993a8; --text-faint: #736d84;
+    --border: #2c2838; --border-strong: #3b3652;
+    --accent: #a78bff; --accent-2: #8b6df0; --accent-bg: #251b3d; --accent-contrast: #14101f;
+    --ok: #43d98a; --ok-bg: #163527; --warn: #f0c04a; --warn-bg: #3a3014; --err: #ff6b7a; --err-bg: #3d1a20;
+    --p-low: #52d6a2; --p-low-bg: #123528;
+    --p-medium: #f0c04a; --p-medium-bg: #3a3014;
+    --p-high: #ff8a55; --p-high-bg: #3c2214;
+    --p-extreme: #ff6b7a; --p-extreme-bg: #3d1a20;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 6px 18px rgba(0,0,0,.28);
+    --shadow-lift: 0 10px 34px rgba(0,0,0,.5);
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--font-ui); font-size: 14px; line-height: 1.45; -webkit-font-smoothing: antialiased; }
+  img { max-width: 100%; }
+  [hidden] { display: none !important; }
+  .app { display: flex; flex-direction: column; height: 100%; min-height: 0; }
+
+  .top { flex: none; display: flex; align-items: center; gap: 16px; padding: 14px 20px; background: var(--surface); border-bottom: 1px solid var(--border); }
+  .brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+  .brand-mark { width: 42px; height: 42px; flex: none; display: grid; place-items: center; border-radius: 11px; background: linear-gradient(150deg, var(--accent), var(--accent-2)); color: var(--accent-contrast); font-family: var(--font-display); font-weight: 800; font-size: 15px; letter-spacing: .5px; box-shadow: 0 4px 14px color-mix(in srgb, var(--accent) 40%, transparent); }
+  .brand-text h1 { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -.2px; line-height: 1; }
+  .brand-text p { margin: 3px 0 0; font-size: 11px; text-transform: uppercase; letter-spacing: 1.6px; color: var(--text-faint); font-weight: 600; }
+  .top-right { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+
+  .live { display: inline-flex; align-items: center; gap: 7px; padding: 5px 11px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--border); font-size: 12px; font-weight: 600; color: var(--text-muted); }
+  .live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--text-faint); }
+  .live.on { color: var(--ok); background: var(--ok-bg); border-color: transparent; }
+  .live.on .live-dot { background: var(--ok); box-shadow: 0 0 0 3px color-mix(in srgb, var(--ok) 22%, transparent); }
+  .live.warn { color: var(--warn); background: var(--warn-bg); border-color: transparent; }
+  .live.warn .live-dot { background: var(--warn); }
+  .live.err { color: var(--err); background: var(--err-bg); border-color: transparent; }
+  .live.err .live-dot { background: var(--err); }
+
+  .btn { font-family: var(--font-ui); font-weight: 700; font-size: 13.5px; border-radius: 10px; padding: 9px 15px; border: 1px solid transparent; cursor: pointer; white-space: nowrap; transition: background .12s, border-color .12s, transform .04s; }
+  .btn:active { transform: translateY(1px); }
+  .btn.primary { background: var(--accent); color: var(--accent-contrast); }
+  .btn.primary:hover { background: var(--accent-2); }
+  .btn.ghost { background: transparent; color: var(--text-muted); border-color: var(--border-strong); }
+  .btn.ghost:hover { color: var(--text); background: var(--surface-2); }
+  .btn.danger { background: transparent; color: var(--err); border-color: color-mix(in srgb, var(--err) 45%, var(--border)); }
+  .btn.danger:hover { background: var(--err-bg); }
+
+  .icon-btn { width: 38px; height: 38px; flex: none; display: grid; place-items: center; border-radius: 10px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text-muted); cursor: pointer; transition: color .12s, background .12s; }
+  .icon-btn:hover { color: var(--text); background: var(--border); }
+
+  .banner { flex: none; display: flex; align-items: center; gap: 12px; padding: 10px 20px; font-size: 13px; font-weight: 600; background: var(--warn-bg); color: var(--warn); border-bottom: 1px solid color-mix(in srgb, var(--warn) 30%, transparent); }
+  .banner .btn { margin-left: auto; }
+  .banner .btn.link { background: transparent; border: 1px solid color-mix(in srgb, var(--warn) 45%, transparent); color: var(--warn); }
+
+  .board-wrap { flex: 1; min-height: 0; overflow: auto; padding: 20px; }
+  .board { display: flex; flex-direction: column; gap: 16px; max-width: 1400px; margin: 0 auto; }
+
+  .lane { background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius); display: flex; flex-direction: column; min-width: 0; }
+  .lane-head { display: flex; align-items: center; gap: 9px; padding: 12px 14px 11px; border-bottom: 1px solid var(--border); }
+  .lane-head h2 { margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 1.1px; color: var(--text); }
+  .lane-head .tag { font-size: 10px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase; color: var(--text-faint); padding: 2px 7px; border-radius: 5px; background: var(--surface); border: 1px solid var(--border); }
+  .count { margin-left: auto; min-width: 24px; text-align: center; padding: 2px 8px; border-radius: 999px; background: var(--surface); border: 1px solid var(--border); font-size: 12px; font-weight: 700; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+  .lane-body { padding: 12px; display: flex; flex-direction: column; gap: 11px; min-height: 64px; }
+  .lane.pool .lane-body { display: grid; grid-template-columns: repeat(auto-fill, minmax(232px, 1fr)); gap: 11px; }
+  .lane-unclaimed { border-color: var(--border-strong); }
+  .lane-unclaimed .lane-head { background: color-mix(in srgb, var(--accent) 7%, var(--surface-2)); }
+  .lane-done .lane-head h2 { color: var(--text-muted); }
+
+  .people-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(248px, 1fr)); gap: 16px; align-items: start; }
+  .lane.person.drop-hot { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent); }
+
+  .ava { width: 22px; height: 22px; flex: none; border-radius: 50%; display: grid; place-items: center; background: hsl(var(--who,270), 48%, 52%); color: #fff; font-size: 11px; font-weight: 800; }
+  .ava.sm { width: 20px; height: 20px; }
+
+  .add-card { margin: 0 12px 12px; padding: 9px; border-radius: var(--radius-sm); border: 1px dashed var(--border-strong); background: transparent; color: var(--text-muted); font-family: var(--font-ui); font-weight: 600; font-size: 13px; cursor: pointer; transition: color .12s, border-color .12s, background .12s; }
+  .add-card:hover { color: var(--accent); border-color: var(--accent); background: var(--accent-bg); }
+  .empty { grid-column: 1 / -1; padding: 16px 8px; text-align: center; color: var(--text-faint); font-size: 12.5px; font-style: italic; border: 1px dashed var(--border); border-radius: var(--radius-sm); }
+
+  .add-person { align-self: stretch; display: flex; }
+  .add-person-btn { width: 100%; min-height: 58px; border-radius: var(--radius); border: 1px dashed var(--border-strong); background: transparent; color: var(--text-muted); font-family: var(--font-ui); font-weight: 700; font-size: 13px; cursor: pointer; transition: color .12s, border-color .12s, background .12s; }
+  .add-person-btn:hover { color: var(--accent); border-color: var(--accent); background: var(--accent-bg); }
+  .add-person-form { display: flex; gap: 8px; width: 100%; align-items: stretch; padding: 10px; background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius); }
+  .add-person-form input { flex: 1; }
+
+  .card { position: relative; overflow: hidden; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 13px 12px 15px; box-shadow: var(--shadow); cursor: grab; user-select: none; display: flex; flex-direction: column; gap: 9px; transition: box-shadow .12s, transform .06s, border-color .12s; }
+  .card:hover { border-color: var(--border-strong); box-shadow: var(--shadow-lift); }
+  .card:active { cursor: grabbing; }
+  .card.dragging { opacity: .35; }
+  .card::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--text-faint); }
+  .card.p-low::before { background: var(--p-low); }
+  .card.p-medium::before { background: var(--p-medium); }
+  .card.p-high::before { background: var(--p-high); }
+  .card.p-extreme::before { background: var(--p-extreme); }
+  .card.done .card-title { color: var(--text-muted); }
+  .card-top { display: flex; align-items: center; gap: 8px; }
+  .card-title { font-weight: 700; font-size: 14.5px; line-height: 1.3; color: var(--text); overflow-wrap: anywhere; text-wrap: pretty; }
+  .card-foot { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .grow { flex: 1; }
+  .pri { font-size: 11px; font-weight: 800; letter-spacing: .4px; text-transform: uppercase; padding: 3px 9px; border-radius: 6px; white-space: nowrap; background: var(--surface-2); color: var(--text-muted); }
+  .card.p-low .pri { background: var(--p-low-bg); color: var(--p-low); }
+  .card.p-medium .pri { background: var(--p-medium-bg); color: var(--p-medium); }
+  .card.p-high .pri { background: var(--p-high-bg); color: var(--p-high); }
+  .card.p-extreme .pri { background: var(--p-extreme-bg); color: var(--p-extreme); }
+  .diff { display: inline-flex; align-items: center; gap: 6px; color: var(--text-muted); }
+  .diff-bars { display: inline-flex; align-items: flex-end; gap: 2px; height: 13px; }
+  .diff-bars .bar { width: 4px; border-radius: 1px; background: var(--border-strong); }
+  .diff-bars .bar:nth-child(1) { height: 6px; }
+  .diff-bars .bar:nth-child(2) { height: 9px; }
+  .diff-bars .bar:nth-child(3) { height: 13px; }
+  .diff-bars .bar.on { background: var(--text-muted); }
+  .diff-label { font-size: 11.5px; font-weight: 600; }
+  .diff-unknown { display: inline-grid; place-items: center; width: 16px; height: 16px; border-radius: 5px; background: var(--surface-2); border: 1px solid var(--border); font-size: 11px; font-weight: 800; color: var(--text-faint); }
+  .note-ic { color: var(--text-faint); display: inline-flex; }
+  .who-tag { display: inline-flex; align-items: center; gap: 6px; max-width: 100%; }
+  .who-name { font-size: 12px; font-weight: 600; color: var(--text-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .drop-line { height: 3px; border-radius: 3px; margin: -4px 2px; background: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent); }
+  .lane.pool .drop-line { grid-column: 1 / -1; }
+
+  .modal-backdrop { position: fixed; inset: 0; z-index: 50; background: color-mix(in srgb, #0a0812 55%, transparent); display: grid; place-items: center; padding: 18px; overflow: auto; }
+  .modal { width: min(520px, 100%); background: var(--elevate); border: 1px solid var(--border); border-radius: 16px; box-shadow: var(--shadow-lift); padding: 20px; display: flex; flex-direction: column; gap: 15px; max-height: calc(100% - 20px); overflow: auto; }
+  .modal-head { display: flex; align-items: center; gap: 10px; }
+  .modal-head h2 { margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 18px; }
+  .modal-head .icon-btn { margin-left: auto; font-size: 20px; line-height: 1; }
+  .fld { display: flex; flex-direction: column; gap: 6px; }
+  .fld-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-faint); }
+  .muted { color: var(--text-muted); font-size: 13px; margin: 0; line-height: 1.5; }
+  .steps { margin: 0; padding-left: 20px; color: var(--text-muted); font-size: 12.5px; display: flex; flex-direction: column; gap: 5px; }
+  .steps a { color: var(--accent); }
+  input, select, textarea { font-family: var(--font-ui); font-size: 14px; color: var(--text); background: var(--surface); border: 1px solid var(--border-strong); border-radius: 9px; padding: 10px 11px; width: 100%; }
+  textarea { resize: vertical; min-height: 74px; line-height: 1.5; }
+  input:focus, textarea:focus, select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 20%, transparent); }
+  select { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'><path d='M2 4l4 4 4-4' fill='none' stroke='%23888' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/></svg>"); background-repeat: no-repeat; background-position: right 11px center; padding-right: 30px; }
+  .seg { display: flex; gap: 6px; flex-wrap: wrap; }
+  .seg-btn { flex: 1; min-width: 62px; padding: 9px 8px; border-radius: 9px; cursor: pointer; border: 1px solid var(--border-strong); background: var(--surface); font-family: var(--font-ui); font-weight: 700; font-size: 13px; color: var(--text-muted); transition: background .12s, color .12s, border-color .12s; }
+  .seg-btn:hover { color: var(--text); }
+  .seg-btn.active { border-color: var(--accent); background: var(--accent-bg); color: var(--accent); }
+  .seg-btn.p-low.active { border-color: var(--p-low); background: var(--p-low-bg); color: var(--p-low); }
+  .seg-btn.p-medium.active { border-color: var(--p-medium); background: var(--p-medium-bg); color: var(--p-medium); }
+  .seg-btn.p-high.active { border-color: var(--p-high); background: var(--p-high-bg); color: var(--p-high); }
+  .seg-btn.p-extreme.active { border-color: var(--p-extreme); background: var(--p-extreme-bg); color: var(--p-extreme); }
+  .modal-foot { display: flex; align-items: center; gap: 10px; margin-top: 3px; }
+  .modal-foot .spacer { flex: 1; }
+  #toast { position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, 20px); z-index: 60; max-width: min(440px, 90vw); padding: 11px 16px; border-radius: 10px; background: var(--text); color: var(--bg); font-weight: 600; font-size: 13px; box-shadow: var(--shadow-lift); opacity: 0; pointer-events: none; transition: opacity .18s, transform .18s; }
+  #toast.show { opacity: 1; transform: translate(-50%, 0); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  @media (max-width: 560px) {
+    .board-wrap { padding: 14px; }
+    .top { padding: 12px 16px; flex-wrap: wrap; }
+    .brand-text h1 { font-size: 18px; }
+    .lane.pool .lane-body { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="brand">
+      <div class="brand-mark">OMR</div>
+      <div class="brand-text"><h1>One More Round</h1><p>Task board</p></div>
+    </div>
+    <div class="top-right">
+      <span id="live" class="live"><span class="live-dot"></span><span class="live-text">Loading</span></span>
+      <button id="settings-btn" class="icon-btn" aria-label="Settings" title="Settings"></button>
+      <button id="theme-btn" class="icon-btn" aria-label="Toggle theme"></button>
+      <button id="new-task" class="btn primary">+ New task</button>
+    </div>
+  </header>
+
+  <div id="banner" class="banner" hidden>
+    <span id="banner-text">You are viewing read-only. Add your GitHub token to add and move cards.</span>
+    <button class="btn link" id="banner-settings">Add token</button>
+  </div>
+
+  <div class="board-wrap">
+    <div class="board">
+      <section class="lane lane-unclaimed pool">
+        <div class="lane-head"><h2>Unclaimed</h2><span class="tag">drag to claim</span><span class="count" data-count="unclaimed">0</span></div>
+        <div class="lane-body" data-lane="unclaimed"></div>
+        <button class="add-card" data-lane="unclaimed">+ Add task</button>
+      </section>
+      <div class="people-row" id="people"></div>
+      <section class="lane lane-done pool">
+        <div class="lane-head"><h2>Done</h2><span class="count" data-count="done">0</span></div>
+        <div class="lane-body" data-lane="done"></div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="backdrop" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="ed-heading">
+    <div class="modal-head"><h2 id="ed-heading">New task</h2><button class="icon-btn" id="ed-close" aria-label="Close">&times;</button></div>
+    <label class="fld"><span class="fld-label">Title</span><input id="ed-title-input" type="text" autocomplete="off" placeholder="What needs doing?"></label>
+    <div class="fld"><span class="fld-label">Priority</span><div class="seg" id="ed-priority"></div></div>
+    <div class="fld"><span class="fld-label">Difficulty</span><div class="seg" id="ed-difficulty"></div></div>
+    <label class="fld"><span class="fld-label">Column</span><select id="ed-column"></select></label>
+    <label class="fld"><span class="fld-label">Notes</span><textarea id="ed-notes" placeholder="Details, links, repro steps, ideas..."></textarea></label>
+    <div class="modal-foot"><button class="btn danger" id="ed-delete" hidden>Delete</button><div class="spacer"></div><button class="btn ghost" id="ed-cancel">Cancel</button><button class="btn primary" id="ed-save">Save task</button></div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="settings-backdrop" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="set-heading">
+    <div class="modal-head"><h2 id="set-heading">Settings</h2><button class="icon-btn" id="set-close" aria-label="Close">&times;</button></div>
+    <p class="muted">To add or move cards, paste a GitHub token with write access to the board repo. It is stored only in this browser and sent only to github.com.</p>
+    <label class="fld"><span class="fld-label">GitHub access token</span><input id="set-token" type="password" autocomplete="off" placeholder="ghp_..."></label>
+    <ol class="steps">
+      <li>Open <a id="token-link" href="https://github.com/settings/tokens/new?scopes=repo&amp;description=One+More+Round+board" target="_blank" rel="noopener">the classic token page</a> (scope is pre-filled).</li>
+      <li>Confirm the <b>repo</b> scope is ticked, pick an expiration, and Generate token.</li>
+      <li>Copy the token (starts with ghp_) and paste it above.</li>
+    </ol>
+    <div class="modal-foot"><button class="btn danger" id="set-remove" hidden>Remove token</button><div class="spacer"></div><button class="btn ghost" id="set-cancel">Cancel</button><button class="btn primary" id="set-save">Save</button></div>
+  </div>
+</div>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ===== Board repo configuration ===== */
+  var GH = { repo: "luisperestrelo/onemoreround-board", branch: "main", path: "board-data.json" };
+  var POLL_MS = 10000;
+  var DEFAULT_PEOPLE = ["Greyy", "Kruise"];
+
+  var PRIORITIES = [{ key: "low", label: "Low" }, { key: "medium", label: "Medium" }, { key: "high", label: "High" }, { key: "extreme", label: "Extreme" }];
+  var DIFFICULTIES = [{ key: "unknown", label: "?" }, { key: "low", label: "Low" }, { key: "medium", label: "Medium" }, { key: "high", label: "High" }];
+  var MOON = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z" fill="currentColor"/></svg>';
+  var SUN = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><g stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></g></svg>';
+  var GEAR = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zm0 2a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3z"/><path fill="currentColor" d="M10.6 2.5a1 1 0 0 0-.98.8l-.3 1.5a7.5 7.5 0 0 0-1.5.87l-1.45-.5a1 1 0 0 0-1.18.45l-1.4 2.42a1 1 0 0 0 .2 1.25l1.15 1a7.6 7.6 0 0 0 0 1.74l-1.15 1a1 1 0 0 0-.2 1.25l1.4 2.42a1 1 0 0 0 1.18.45l1.45-.5c.47.35.97.64 1.5.87l.3 1.5a1 1 0 0 0 .98.8h2.8a1 1 0 0 0 .98-.8l.3-1.5c.53-.23 1.03-.52 1.5-.87l1.45.5a1 1 0 0 0 1.18-.45l1.4-2.42a1 1 0 0 0-.2-1.25l-1.15-1a7.6 7.6 0 0 0 0-1.74l1.15-1a1 1 0 0 0 .2-1.25l-1.4-2.42a1 1 0 0 0-1.18-.45l-1.45.5a7.5 7.5 0 0 0-1.5-.87l-.3-1.5a1 1 0 0 0-.98-.8zm.82 2h1.16l.24 1.22a1 1 0 0 0 .7.77c.6.19 1.16.51 1.63.95a1 1 0 0 0 1.02.2l1.17-.4.58 1-.93.82a1 1 0 0 0-.32.98 5.6 5.6 0 0 1 0 2.32 1 1 0 0 0 .32.98l.93.82-.58 1-1.17-.4a1 1 0 0 0-1.02.2c-.47.44-1.03.76-1.63.95a1 1 0 0 0-.7.77L12.58 20h-1.16l-.24-1.22a1 1 0 0 0-.7-.77 5.5 5.5 0 0 1-1.63-.95 1 1 0 0 0-1.02-.2l-1.17.4-.58-1 .93-.82a1 1 0 0 0 .32-.98 5.6 5.6 0 0 1 0-2.32 1 1 0 0 0-.32-.98l-.93-.82.58-1 1.17.4a1 1 0 0 0 1.02-.2c.47-.44 1.03-.76 1.63-.95a1 1 0 0 0 .7-.77z"/></svg>';
+
+  var state = {
+    people: DEFAULT_PEOPLE.slice(), cards: [], token: null, sha: null,
+    phase: "loading", saving: false, queue: [],
+    draft: null, isDragging: false, draggingId: null, pendingRender: false
+  };
+
+  /* ===== helpers ===== */
+  function $(s, r) { return (r || document).querySelector(s); }
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+  function cssEsc(s) { return String(s).replace(/["\\]/g, "\\$&"); }
+  function cap(s) { s = String(s || ""); return s.charAt(0).toUpperCase() + s.slice(1); }
+  function personHue(name) { var h = 0; for (var i = 0; i < name.length; i++) h = (h * 31 + name.charCodeAt(i)) >>> 0; return h % 360; }
+  function cardById(id) { for (var i = 0; i < state.cards.length; i++) if (state.cards[i].id === id) return state.cards[i]; return null; }
+  function priLabel(p) { for (var i = 0; i < PRIORITIES.length; i++) if (PRIORITIES[i].key === p) return PRIORITIES[i].label; return "Medium"; }
+  function newId() { return "c_" + Date.now().toString(36) + Math.random().toString(36).slice(2, 7); }
+  function cloneCard(c) { var o = {}; for (var k in c) if (Object.prototype.hasOwnProperty.call(c, k)) o[k] = c[k]; return o; }
+  function utf8ToB64(s) { return btoa(unescape(encodeURIComponent(s))); }
+  function b64ToUtf8(s) { return decodeURIComponent(escape(atob(String(s).replace(/\s/g, "")))); }
+
+  function laneKey(assignee, done) { return done ? "done" : (assignee ? "person:" + assignee : "unclaimed"); }
+  function inLane(c, lane, person) {
+    if (lane === "done") return !!c.done;
+    if (c.done) return false;
+    if (lane === "unclaimed") return !c.assignee;
+    if (lane === "person") return c.assignee === person;
+    return false;
+  }
+  function laneCardsSorted(lane, person, excludeId) {
+    var out = [];
+    for (var i = 0; i < state.cards.length; i++) { var c = state.cards[i]; if (excludeId && c.id === excludeId) continue; if (inLane(c, lane, person)) out.push(c); }
+    out.sort(function (a, b) { return (a.order || 0) - (b.order || 0); });
+    return out;
+  }
+  function maxOrderLane(assignee, done) {
+    var lane = done ? "done" : (assignee ? "person" : "unclaimed"), m = 0;
+    for (var i = 0; i < state.cards.length; i++) { var c = state.cards[i]; if (inLane(c, lane, assignee) && typeof c.order === "number" && c.order > m) m = c.order; }
+    return m;
+  }
+
+  var toastTimer = null;
+  function toast(msg) { var t = $("#toast"); t.textContent = msg; t.classList.add("show"); clearTimeout(toastTimer); toastTimer = setTimeout(function () { t.classList.remove("show"); }, 3400); }
+
+  function setSync(mode) {
+    var el = $("#live"), txt = $(".live-text", el);
+    el.classList.remove("on", "warn", "err");
+    var labels = { loading: "Loading", synced: "Synced", saving: "Saving", readonly: "Read-only", error: "Sync error" };
+    txt.textContent = labels[mode] || mode;
+    if (mode === "synced" || mode === "saving") el.classList.add("on");
+    else if (mode === "readonly") el.classList.add("warn");
+    else if (mode === "error") el.classList.add("err");
+  }
+  function refreshBanner() { $("#banner").hidden = !!state.token; }
+
+  /* ===== GitHub storage ===== */
+  function apiHeaders() { var h = { "Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28" }; if (state.token) h["Authorization"] = "Bearer " + state.token; return h; }
+  function fetchData() {
+    var url = "https://api.github.com/repos/" + GH.repo + "/contents/" + GH.path + "?ref=" + GH.branch + "&_=" + Date.now();
+    return fetch(url, { headers: apiHeaders(), cache: "no-store" }).then(function (r) {
+      if (r.status === 404) return { data: { people: DEFAULT_PEOPLE.slice(), cards: [] }, sha: null };
+      if (!r.ok) return r.json().then(function (e) { throw { status: r.status, msg: e && e.message }; }, function () { throw { status: r.status }; });
+      return r.json().then(function (j) { return { data: JSON.parse(b64ToUtf8(j.content)), sha: j.sha }; });
+    });
+  }
+  function putData(data, sha) {
+    var body = { message: "Update board", content: utf8ToB64(JSON.stringify(data, null, 2)), branch: GH.branch };
+    if (sha) body.sha = sha;
+    return fetch("https://api.github.com/repos/" + GH.repo + "/contents/" + GH.path, { method: "PUT", headers: apiHeaders(), body: JSON.stringify(body) })
+      .then(function (r) {
+        if (r.status === 409) throw { conflict: true };
+        if (!r.ok) return r.json().then(function (e) { throw { status: r.status, msg: e && e.message }; }, function () { throw { status: r.status }; });
+        return r.json();
+      });
+  }
+  function handleApiErr(err) {
+    var s = err && err.status;
+    if (s === 401) toast("GitHub rejected your token. Update it in Settings.");
+    else if (s === 403) toast("GitHub blocked the request (rate limit or permissions).");
+    else if (s === 404) toast("Board repo or data file not found.");
+    else if (s === 422) toast("GitHub could not save (" + (err.msg || "unprocessable") + ").");
+    else toast("Network problem talking to GitHub.");
+    setSync("error");
+    if (window.console) console.warn("github error", err);
+  }
+
+  // A mutation is fn(data) that edits a plain {people, cards}. Applied optimistically, then persisted read-modify-write.
+  function mutate(fn) {
+    if (!state.token) { toast("Add your GitHub token in Settings to edit."); openSettings(); return; }
+    var local = { people: state.people.slice(), cards: state.cards.map(cloneCard) };
+    fn(local);
+    adopt(local);
+    state.queue.push(fn);
+    processQueue();
+  }
+  function processQueue() {
+    if (state.saving || !state.queue.length) return;
+    state.saving = true; setSync("saving");
+    var batch = state.queue.slice(); state.queue = [];
+    fetchData().then(function (res) {
+      var data = res.data;
+      for (var i = 0; i < batch.length; i++) batch[i](data);
+      return putData(data, res.sha).then(function (j) { state.sha = j.content.sha; adopt(data); setSync("synced"); });
+    }).then(function () {
+      state.saving = false; if (state.queue.length) processQueue();
+    }).catch(function (err) {
+      state.saving = false;
+      if (err && err.conflict) { for (var k = batch.length - 1; k >= 0; k--) state.queue.unshift(batch[k]); processQueue(); return; }
+      for (var m = batch.length - 1; m >= 0; m--) state.queue.unshift(batch[m]);
+      handleApiErr(err);
+    });
+  }
+  function poll() {
+    if (state.saving || state.queue.length) return;
+    fetchData().then(function (res) {
+      if (res.sha !== state.sha || state.phase !== "ready") { state.sha = res.sha; state.phase = "ready"; adopt(res.data); }
+      setSync(state.token ? "synced" : "readonly");
+    }).catch(function (err) { handleApiErr(err); });
+  }
+
+  function adopt(data) {
+    state.people = (data.people && data.people.length) ? data.people.slice() : DEFAULT_PEOPLE.slice();
+    state.cards = (data.cards || []).map(cloneCard);
+    renderPeople(); scheduleRender();
+  }
+
+  /* ===== rendering ===== */
+  function noteIcon() { return '<span class="note-ic" title="Has notes"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M5 4h14v13l-4 4H5z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M15 21v-4h4M8 9.5h8M8 13.5h5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>'; }
+  function difficultyHTML(diff) {
+    if (!diff || diff === "unknown") return '<span class="diff" title="Difficulty: unknown"><span class="diff-unknown">?</span></span>';
+    var n = diff === "low" ? 1 : diff === "medium" ? 2 : 3, bars = "";
+    for (var i = 0; i < 3; i++) bars += '<span class="bar' + (i < n ? " on" : "") + '"></span>';
+    return '<span class="diff" title="Difficulty: ' + esc(cap(diff)) + '"><span class="diff-bars">' + bars + '</span><span class="diff-label">' + esc(cap(diff)) + '</span></span>';
+  }
+  function avatar(name, cls) { var init = (name.trim()[0] || "?").toUpperCase(); return '<span class="ava ' + (cls || "") + '" style="--who:' + personHue(name) + '">' + esc(init) + '</span>'; }
+  function cardHTML(c, laneType) {
+    var pri = c.priority || "medium", hasNotes = c.notes && String(c.notes).trim();
+    var who = (laneType === "done" && c.assignee) ? '<span class="who-tag" title="Done by ' + esc(c.assignee) + '">' + avatar(c.assignee, "sm") + '<span class="who-name">' + esc(c.assignee) + '</span></span>' : "";
+    return '<article class="card p-' + esc(pri) + (c.done ? ' done' : '') + '" draggable="true" data-id="' + esc(c.id) + '" tabindex="0" role="button" aria-label="Edit task: ' + esc(c.title) + '">'
+      + '<div class="card-top"><span class="pri">' + esc(priLabel(pri)) + '</span><span class="grow"></span>' + (hasNotes ? noteIcon() : "") + '</div>'
+      + '<div class="card-title">' + esc(c.title) + '</div>'
+      + '<div class="card-foot">' + difficultyHTML(c.difficulty) + '<span class="grow"></span>' + who + '</div></article>';
+  }
+  function emptyText() { return state.phase === "loading" ? "Loading..." : "Nothing here"; }
+  function fillLane(body, cards, laneType) { var html = ""; for (var i = 0; i < cards.length; i++) html += cardHTML(cards[i], laneType); body.innerHTML = html || '<div class="empty">' + emptyText() + '</div>'; }
+  function setCount(name, n) { var el = document.querySelector('.count[data-count="' + name + '"]'); if (el) el.textContent = n; }
+
+  function renderPeople() {
+    var wrap = $("#people"), html = "";
+    for (var i = 0; i < state.people.length; i++) {
+      var p = state.people[i];
+      html += '<section class="lane person" data-person="' + esc(p) + '"><div class="lane-head">' + avatar(p) + '<h2>' + esc(p) + '</h2><span class="count" data-count="person:' + esc(p) + '">0</span></div>'
+        + '<div class="lane-body" data-lane="person" data-person="' + esc(p) + '"></div>'
+        + '<button class="add-card" data-lane="person" data-person="' + esc(p) + '">+ Add task</button></section>';
+    }
+    html += '<div class="add-person"><button class="add-person-btn" id="add-person-btn">+ Add person</button><div class="add-person-form" id="add-person-form" hidden><input id="add-person-input" type="text" autocomplete="off" placeholder="Name"><button class="btn primary" id="add-person-confirm">Add</button></div></div>';
+    wrap.innerHTML = html;
+  }
+  function renderBoard() {
+    var unc = laneCardsSorted("unclaimed");
+    fillLane(document.querySelector('.lane-body[data-lane="unclaimed"]'), unc, "unclaimed"); setCount("unclaimed", unc.length);
+    for (var i = 0; i < state.people.length; i++) {
+      var p = state.people[i], body = document.querySelector('.lane-body[data-lane="person"][data-person="' + cssEsc(p) + '"]');
+      if (!body) continue;
+      var pc = laneCardsSorted("person", p); fillLane(body, pc, "person"); setCount("person:" + p, pc.length);
+    }
+    var done = laneCardsSorted("done");
+    fillLane(document.querySelector('.lane-body[data-lane="done"]'), done, "done"); setCount("done", done.length);
+  }
+  function scheduleRender() { if (state.isDragging) { state.pendingRender = true; return; } renderBoard(); }
+
+  /* ===== editor ===== */
+  function buildSeg(id, items, color) { var html = ""; for (var i = 0; i < items.length; i++) html += '<button type="button" class="seg-btn' + (color ? " p-" + items[i].key : "") + '" data-value="' + items[i].key + '">' + esc(items[i].label) + '</button>'; document.getElementById(id).innerHTML = html; }
+  function syncSeg(id, value) { var b = document.getElementById(id).querySelectorAll(".seg-btn"); for (var i = 0; i < b.length; i++) b[i].classList.toggle("active", b[i].dataset.value === value); }
+  function draftColumnValue(d) { return d.done ? "__done" : (d.assignee ? "p:" + d.assignee : "__unclaimed"); }
+  function fillColumnSelect() {
+    var sel = $("#ed-column"), cur = state.draft ? draftColumnValue(state.draft) : "__unclaimed", have = false;
+    var html = '<option value="__unclaimed">Unclaimed</option>';
+    for (var i = 0; i < state.people.length; i++) { if ("p:" + state.people[i] === cur) have = true; html += '<option value="p:' + esc(state.people[i]) + '">' + esc(state.people[i]) + '</option>'; }
+    if (!have && state.draft && state.draft.assignee && !state.draft.done) html += '<option value="p:' + esc(state.draft.assignee) + '">' + esc(state.draft.assignee) + '</option>';
+    html += '<option value="__done">Done</option>';
+    sel.innerHTML = html; sel.value = cur;
+  }
+  function openEditor(card, place) {
+    if (!state.token) { toast("Add your GitHub token in Settings to edit."); openSettings(); return; }
+    state.draft = card
+      ? { id: card.id, title: card.title || "", priority: card.priority || "medium", difficulty: card.difficulty || "unknown", assignee: card.assignee || "", done: !!card.done, notes: card.notes || "", order: card.order, createdAt: card.createdAt }
+      : { id: null, title: "", priority: "medium", difficulty: "unknown", assignee: place && place.assignee || "", done: place && place.done || false, notes: "" };
+    $("#ed-heading").textContent = card ? "Edit task" : "New task";
+    $("#ed-title-input").value = state.draft.title;
+    $("#ed-notes").value = state.draft.notes;
+    syncSeg("ed-priority", state.draft.priority); syncSeg("ed-difficulty", state.draft.difficulty); fillColumnSelect();
+    var del = $("#ed-delete"); del.hidden = !card; del.textContent = "Delete"; del.dataset.confirm = "0";
+    $("#backdrop").hidden = false;
+    setTimeout(function () { $("#ed-title-input").focus(); }, 30);
+  }
+  function closeEditor() { $("#backdrop").hidden = true; state.draft = null; }
+  function saveCard() {
+    var d = state.draft; if (!d) return;
+    var title = (d.title || "").trim();
+    if (!title) { toast("Give the task a title first."); $("#ed-title-input").focus(); return; }
+    var fields = { title: title, priority: d.priority || "medium", difficulty: d.difficulty || "unknown", assignee: d.assignee || "", done: !!d.done, notes: (d.notes || "").trim(), updatedAt: Date.now() };
+    if (d.id) {
+      var ex = cardById(d.id) || {};
+      var order = (typeof ex.order === "number") ? ex.order : null;
+      if (laneKey(ex.assignee, ex.done) !== laneKey(fields.assignee, fields.done) || order == null) order = maxOrderLane(fields.assignee, fields.done) + 1000;
+      fields.order = order; fields.createdAt = ex.createdAt || Date.now();
+      var id = d.id;
+      mutate(function (data) { for (var i = 0; i < data.cards.length; i++) if (data.cards[i].id === id) { for (var k in fields) data.cards[i][k] = fields[k]; return; } });
+    } else {
+      fields.id = newId(); fields.order = maxOrderLane(fields.assignee, fields.done) + 1000; fields.createdAt = Date.now();
+      mutate(function (data) { data.cards.push(fields); });
+    }
+    closeEditor();
+  }
+  function deleteCard(id) { mutate(function (data) { for (var i = 0; i < data.cards.length; i++) if (data.cards[i].id === id) { data.cards.splice(i, 1); return; } }); }
+  function addPerson(name) {
+    name = (name || "").trim(); if (!name) return;
+    if (state.people.indexOf(name) !== -1) return;
+    mutate(function (data) { if (!data.people) data.people = []; if (data.people.indexOf(name) === -1) data.people.push(name); });
+  }
+
+  /* ===== drag & drop ===== */
+  var dropLine = null;
+  function getLine() { if (!dropLine) { dropLine = document.createElement("div"); dropLine.className = "drop-line"; } return dropLine; }
+  function clearMarker() { if (dropLine && dropLine.parentNode) dropLine.parentNode.removeChild(dropLine); var hot = document.querySelectorAll(".drop-hot"); for (var i = 0; i < hot.length; i++) hot[i].classList.remove("drop-hot"); }
+  function insertRef(body, x, y) {
+    var els = body.querySelectorAll(".card:not(.dragging)"); if (!els.length) return null;
+    var best = null, bestD = Infinity, before = true;
+    for (var i = 0; i < els.length; i++) { var b = els[i].getBoundingClientRect(), cx = b.left + b.width / 2, cy = b.top + b.height / 2, dx = x - cx, dy = y - cy, dist = dx * dx + dy * dy; if (dist < bestD) { bestD = dist; best = els[i]; before = Math.abs(dy) > b.height * 0.3 ? dy < 0 : dx < 0; } }
+    return before ? best : best.nextElementSibling;
+  }
+  function handleDrop(body, x, y) {
+    var id = state.draggingId; if (!id) return;
+    var lane = body.dataset.lane, person = body.dataset.person || "";
+    var ref = insertRef(body, x, y), laneCards = laneCardsSorted(lane, person, id), idx = laneCards.length;
+    if (ref && ref.dataset && ref.dataset.id) { for (var i = 0; i < laneCards.length; i++) if (laneCards[i].id === ref.dataset.id) { idx = i; break; } }
+    var prevOrder = idx > 0 ? laneCards[idx - 1].order : null, nextOrder = idx < laneCards.length ? laneCards[idx].order : null, newOrder;
+    if (prevOrder == null && nextOrder == null) newOrder = 1000;
+    else if (prevOrder == null) newOrder = nextOrder - 1000;
+    else if (nextOrder == null) newOrder = prevOrder + 1000;
+    else newOrder = (prevOrder + nextOrder) / 2;
+    var card = cardById(id); if (!card) return;
+    if (inLane(card, lane, person) && card.order === newOrder) return;
+    mutate(function (data) {
+      for (var i = 0; i < data.cards.length; i++) if (data.cards[i].id === id) {
+        var c = data.cards[i];
+        if (lane === "unclaimed") { c.assignee = ""; c.done = false; }
+        else if (lane === "person") { c.assignee = person; c.done = false; }
+        else if (lane === "done") { c.done = true; }
+        c.order = newOrder; c.updatedAt = Date.now(); return;
+      }
+    });
+  }
+
+  /* ===== theme ===== */
+  function currentTheme() { var d = document.documentElement.getAttribute("data-theme"); if (d === "dark" || d === "light") return d; return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; }
+  function updateThemeBtn() { var b = $("#theme-btn"), dark = currentTheme() === "dark"; b.innerHTML = dark ? SUN : MOON; b.setAttribute("aria-label", dark ? "Switch to light theme" : "Switch to dark theme"); }
+  function applyStoredTheme() { var t = null; try { t = localStorage.getItem("omr-theme"); } catch (e) {} if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t); updateThemeBtn(); }
+  function toggleTheme() { var next = currentTheme() === "dark" ? "light" : "dark"; document.documentElement.setAttribute("data-theme", next); try { localStorage.setItem("omr-theme", next); } catch (e) {} updateThemeBtn(); }
+
+  /* ===== settings ===== */
+  function loadToken() { try { return localStorage.getItem("omr-gh-token") || null; } catch (e) { return null; } }
+  function storeToken(t) { try { if (t) localStorage.setItem("omr-gh-token", t); else localStorage.removeItem("omr-gh-token"); } catch (e) {} }
+  function openSettings() {
+    $("#set-token").value = state.token || "";
+    $("#set-remove").hidden = !state.token;
+    $("#token-link").href = "https://github.com/settings/personal-access-tokens/new";
+    $("#settings-backdrop").hidden = false;
+    setTimeout(function () { $("#set-token").focus(); }, 30);
+  }
+  function closeSettings() { $("#settings-backdrop").hidden = true; }
+  function saveSettings() {
+    var t = $("#set-token").value.trim();
+    state.token = t || null; storeToken(state.token);
+    closeSettings(); refreshBanner();
+    setSync(state.token ? "synced" : "readonly");
+    schedulePolling(); poll(); processQueue();
+    if (state.token) toast("Token saved. You can edit the board now.");
+  }
+  function removeToken() { state.token = null; storeToken(null); $("#set-token").value = ""; $("#set-remove").hidden = true; refreshBanner(); setSync("readonly"); schedulePolling(); toast("Token removed. You are back to read-only."); }
+
+  /* ===== wiring ===== */
+  function wire() {
+    buildSeg("ed-priority", PRIORITIES, true);
+    buildSeg("ed-difficulty", DIFFICULTIES, false);
+    renderPeople(); applyStoredTheme();
+    $("#settings-btn").innerHTML = GEAR;
+
+    $("#theme-btn").addEventListener("click", toggleTheme);
+    $("#settings-btn").addEventListener("click", openSettings);
+    $("#banner-settings").addEventListener("click", openSettings);
+    $("#new-task").addEventListener("click", function () { openEditor(null, { assignee: "", done: false }); });
+
+    var board = $(".board");
+    board.addEventListener("click", function (e) {
+      if (e.target.closest("#add-person-btn")) { $("#add-person-form").hidden = false; $("#add-person-btn").hidden = true; $("#add-person-input").focus(); return; }
+      if (e.target.closest("#add-person-confirm")) { addPerson($("#add-person-input").value); return; }
+      var add = e.target.closest(".add-card");
+      if (add) { openEditor(null, { assignee: add.dataset.person || "", done: false }); return; }
+      var card = e.target.closest(".card");
+      if (card) { var c = cardById(card.dataset.id); if (c) openEditor(c); }
+    });
+    board.addEventListener("keydown", function (e) {
+      if (e.target.id === "add-person-input" && e.key === "Enter") { e.preventDefault(); addPerson($("#add-person-input").value); return; }
+      if (e.key !== "Enter" && e.key !== " ") return;
+      var card = e.target.closest(".card");
+      if (card) { e.preventDefault(); var c = cardById(card.dataset.id); if (c) openEditor(c); }
+    });
+    board.addEventListener("dragstart", function (e) {
+      var card = e.target.closest(".card"); if (!card) return;
+      if (!state.token) { e.preventDefault(); toast("Add your GitHub token in Settings to move cards."); openSettings(); return; }
+      state.draggingId = card.dataset.id; state.isDragging = true; card.classList.add("dragging");
+      if (e.dataTransfer) { e.dataTransfer.effectAllowed = "move"; try { e.dataTransfer.setData("text/plain", card.dataset.id); } catch (err) {} }
+    });
+    board.addEventListener("dragend", function (e) {
+      var card = e.target.closest(".card"); if (card) card.classList.remove("dragging");
+      state.isDragging = false; state.draggingId = null; clearMarker();
+      if (state.pendingRender) { state.pendingRender = false; renderBoard(); }
+    });
+    board.addEventListener("dragover", function (e) {
+      var body = e.target.closest(".lane-body"); if (!body || !state.draggingId) return;
+      e.preventDefault(); if (e.dataTransfer) e.dataTransfer.dropEffect = "move"; clearMarker();
+      var lane = body.closest(".lane"); if (lane && lane.classList.contains("person")) lane.classList.add("drop-hot");
+      var ref = insertRef(body, e.clientX, e.clientY), line = getLine();
+      if (ref) body.insertBefore(line, ref); else body.appendChild(line);
+    });
+    board.addEventListener("drop", function (e) {
+      var body = e.target.closest(".lane-body"); if (!body || !state.draggingId) return;
+      e.preventDefault(); clearMarker(); handleDrop(body, e.clientX, e.clientY);
+    });
+
+    $("#ed-title-input").addEventListener("input", function (e) { if (state.draft) state.draft.title = e.target.value; });
+    $("#ed-title-input").addEventListener("keydown", function (e) { if (e.key === "Enter") { e.preventDefault(); saveCard(); } });
+    $("#ed-notes").addEventListener("input", function (e) { if (state.draft) state.draft.notes = e.target.value; });
+    $("#ed-column").addEventListener("change", function (e) {
+      if (!state.draft) return; var v = e.target.value;
+      if (v === "__unclaimed") { state.draft.assignee = ""; state.draft.done = false; }
+      else if (v === "__done") { state.draft.done = true; }
+      else if (v.indexOf("p:") === 0) { state.draft.assignee = v.slice(2); state.draft.done = false; }
+    });
+    $("#ed-priority").addEventListener("click", function (e) { var b = e.target.closest(".seg-btn"); if (!b || !state.draft) return; state.draft.priority = b.dataset.value; syncSeg("ed-priority", b.dataset.value); });
+    $("#ed-difficulty").addEventListener("click", function (e) { var b = e.target.closest(".seg-btn"); if (!b || !state.draft) return; state.draft.difficulty = b.dataset.value; syncSeg("ed-difficulty", b.dataset.value); });
+    $("#ed-save").addEventListener("click", saveCard);
+    $("#ed-cancel").addEventListener("click", closeEditor);
+    $("#ed-close").addEventListener("click", closeEditor);
+    $("#ed-delete").addEventListener("click", function () {
+      var del = $("#ed-delete");
+      if (del.dataset.confirm !== "1") { del.dataset.confirm = "1"; del.textContent = "Confirm delete"; setTimeout(function () { if (del.dataset.confirm === "1") { del.dataset.confirm = "0"; del.textContent = "Delete"; } }, 3000); return; }
+      if (state.draft && state.draft.id) deleteCard(state.draft.id);
+      closeEditor();
+    });
+    $("#backdrop").addEventListener("click", function (e) { if (e.target === $("#backdrop")) closeEditor(); });
+
+    $("#set-save").addEventListener("click", saveSettings);
+    $("#set-cancel").addEventListener("click", closeSettings);
+    $("#set-close").addEventListener("click", closeSettings);
+    $("#set-remove").addEventListener("click", removeToken);
+    $("#set-token").addEventListener("keydown", function (e) { if (e.key === "Enter") { e.preventDefault(); saveSettings(); } });
+    $("#settings-backdrop").addEventListener("click", function (e) { if (e.target === $("#settings-backdrop")) closeSettings(); });
+
+    document.addEventListener("keydown", function (e) { if (e.key !== "Escape") return; if (!$("#backdrop").hidden) closeEditor(); else if (!$("#settings-backdrop").hidden) closeSettings(); });
+    if (window.matchMedia) { var mq = window.matchMedia("(prefers-color-scheme: dark)"); if (mq.addEventListener) mq.addEventListener("change", updateThemeBtn); }
+  }
+
+  var pollTimer = null;
+  function schedulePolling() { if (pollTimer) { clearInterval(pollTimer); pollTimer = null; } if (state.token) pollTimer = setInterval(poll, POLL_MS); }
+  function init() {
+    state.token = loadToken();
+    refreshBanner();
+    setSync("loading");
+    renderBoard();
+    fetchData().then(function (res) {
+      state.sha = res.sha; state.phase = "ready"; adopt(res.data);
+      setSync(state.token ? "synced" : "readonly");
+    }).catch(function (err) { state.phase = "ready"; handleApiErr(err); });
+    schedulePolling();
+    window.addEventListener("focus", poll);
+  }
+
+  wire();
+  init();
+})();
+</script>
+</body>
+</html>

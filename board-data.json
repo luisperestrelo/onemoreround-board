@@ -1,0 +1,13 @@
+{
+  "people": ["Greyy", "Kruise"],
+  "cards": [
+    { "id": "endless-mode", "title": "Add Endless Mode", "priority": "extreme", "difficulty": "high", "assignee": "", "done": false, "notes": "", "order": 1000, "createdAt": 1789776000000, "updatedAt": 1789776000000 },
+    { "id": "sounds-general", "title": "Sounds in general", "priority": "high", "difficulty": "unknown", "assignee": "", "done": false, "notes": "", "order": 2000, "createdAt": 1789776001000, "updatedAt": 1789776001000 },
+    { "id": "add-warrior", "title": "Add warrior", "priority": "high", "difficulty": "high", "assignee": "", "done": false, "notes": "", "order": 3000, "createdAt": 1789776002000, "updatedAt": 1789776002000 },
+    { "id": "new-boss", "title": "Add new boss", "priority": "high", "difficulty": "high", "assignee": "", "done": false, "notes": "", "order": 4000, "createdAt": 1789776003000, "updatedAt": 1789776003000 },
+    { "id": "fps-improvements", "title": "FPS Improvements", "priority": "high", "difficulty": "high", "assignee": "", "done": false, "notes": "", "order": 5000, "createdAt": 1789776004000, "updatedAt": 1789776004000 },
+    { "id": "more-curses", "title": "Add more curses", "priority": "medium", "difficulty": "medium", "assignee": "", "done": false, "notes": "", "order": 6000, "createdAt": 1789776005000, "updatedAt": 1789776005000 },
+    { "id": "storm-cage-sound", "title": "Fix Storm Cage sound bug", "priority": "medium", "difficulty": "low", "assignee": "", "done": false, "notes": "", "order": 7000, "createdAt": 1789776006000, "updatedAt": 1789776006000 },
+    { "id": "totemic-bond-ui", "title": "Fix Totemic Bond (extra totem) UI", "priority": "low", "difficulty": "low", "assignee": "", "done": false, "notes": "", "order": 8000, "createdAt": 1789776007000, "updatedAt": 1789776007000 }
+  ]
+}
