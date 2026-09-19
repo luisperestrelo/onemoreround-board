@@ -142,15 +142,9 @@
   .card.p-medium .pri { background: var(--p-medium-bg); color: var(--p-medium); }
   .card.p-high .pri { background: var(--p-high-bg); color: var(--p-high); }
   .card.p-extreme .pri { background: var(--p-extreme-bg); color: var(--p-extreme); }
-  .diff { display: inline-flex; align-items: center; gap: 6px; color: var(--text-muted); }
-  .diff-bars { display: inline-flex; align-items: flex-end; gap: 2px; height: 13px; }
-  .diff-bars .bar { width: 4px; border-radius: 1px; background: var(--border-strong); }
-  .diff-bars .bar:nth-child(1) { height: 6px; }
-  .diff-bars .bar:nth-child(2) { height: 9px; }
-  .diff-bars .bar:nth-child(3) { height: 13px; }
-  .diff-bars .bar.on { background: var(--text-muted); }
-  .diff-label { font-size: 11.5px; font-weight: 600; }
-  .diff-unknown { display: inline-grid; place-items: center; width: 16px; height: 16px; border-radius: 5px; background: var(--surface-2); border: 1px solid var(--border); font-size: 11px; font-weight: 800; color: var(--text-faint); }
+  .diff { display: inline-flex; align-items: baseline; gap: 5px; font-size: 12px; }
+  .diff-key { color: var(--text-faint); font-weight: 600; }
+  .diff-val { color: var(--text-muted); font-weight: 700; }
   .note-ic { color: var(--text-faint); display: inline-flex; }
   .who-tag { display: inline-flex; align-items: center; gap: 6px; max-width: 100%; }
   .who-name { font-size: 12px; font-weight: 600; color: var(--text-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -399,10 +393,8 @@
   /* ===== rendering ===== */
   function noteIcon() { return '<span class="note-ic" title="Has notes"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M5 4h14v13l-4 4H5z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M15 21v-4h4M8 9.5h8M8 13.5h5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>'; }
   function difficultyHTML(diff) {
-    if (!diff || diff === "unknown") return '<span class="diff" title="Difficulty: unknown"><span class="diff-unknown">?</span></span>';
-    var n = diff === "low" ? 1 : diff === "medium" ? 2 : 3, bars = "";
-    for (var i = 0; i < 3; i++) bars += '<span class="bar' + (i < n ? " on" : "") + '"></span>';
-    return '<span class="diff" title="Difficulty: ' + esc(cap(diff)) + '"><span class="diff-bars">' + bars + '</span><span class="diff-label">' + esc(cap(diff)) + '</span></span>';
+    var label = (!diff || diff === "unknown") ? "?" : cap(diff);
+    return '<span class="diff"><span class="diff-key">Difficulty:</span> <span class="diff-val">' + esc(label) + '</span></span>';
   }
   function avatar(name, cls) { var init = (name.trim()[0] || "?").toUpperCase(); return '<span class="ava ' + (cls || "") + '" style="--who:' + personHue(name) + '">' + esc(init) + '</span>'; }
   function cardHTML(c, laneType) {
