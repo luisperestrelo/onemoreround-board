@@ -196,6 +196,7 @@
     </div>
     <div class="top-right">
       <span id="live" class="live"><span class="live-dot"></span><span class="live-text">Loading</span></span>
+      <button id="sort-btn" class="btn ghost" title="Sort cards within each column">Sort: Manual</button>
       <button id="settings-btn" class="icon-btn" aria-label="Settings" title="Settings"></button>
       <button id="theme-btn" class="icon-btn" aria-label="Toggle theme"></button>
       <button id="new-task" class="btn primary">+ New task</button>
@@ -268,7 +269,7 @@
 
   var state = {
     people: DEFAULT_PEOPLE.slice(), cards: [], token: null, sha: null,
-    phase: "loading", saving: false, queue: [],
+    phase: "loading", saving: false, queue: [], sortMode: "manual",
     draft: null, isDragging: false, draggingId: null, pendingRender: false
   };
 
@@ -293,10 +294,17 @@
     if (lane === "person") return c.assignee === person;
     return false;
   }
+  var PRIORITY_RANK = { extreme: 4, high: 3, medium: 2, low: 1 };
+  var DIFFICULTY_RANK = { high: 3, medium: 2, low: 1, unknown: 0 };
   function laneCardsSorted(lane, person, excludeId) {
     var out = [];
     for (var i = 0; i < state.cards.length; i++) { var c = state.cards[i]; if (excludeId && c.id === excludeId) continue; if (inLane(c, lane, person)) out.push(c); }
-    out.sort(function (a, b) { return (a.order || 0) - (b.order || 0); });
+    var m = state.sortMode;
+    out.sort(function (a, b) {
+      if (m === "priority") { var dp = (PRIORITY_RANK[b.priority] || 0) - (PRIORITY_RANK[a.priority] || 0); if (dp) return dp; }
+      else if (m === "difficulty") { var dd = (DIFFICULTY_RANK[b.difficulty] || 0) - (DIFFICULTY_RANK[a.difficulty] || 0); if (dd) return dd; }
+      return (a.order || 0) - (b.order || 0);
+    });
     return out;
   }
   function maxOrderLane(assignee, done) {
@@ -378,7 +386,7 @@
     });
   }
   function poll() {
-    if (state.saving || state.queue.length) return;
+    if (state.isDragging || state.saving || state.queue.length) return;
     fetchData().then(function (res) {
       if (res.sha !== state.sha || state.phase !== "ready") { state.sha = res.sha; state.phase = "ready"; adopt(res.data); }
       setSync(state.token ? "synced" : "readonly");
@@ -388,8 +396,10 @@
   function adopt(data) {
     state.people = (data.people && data.people.length) ? data.people.slice() : DEFAULT_PEOPLE.slice();
     state.cards = (data.cards || []).map(cloneCard);
-    renderPeople(); scheduleRender();
+    if (state.isDragging) { state.pendingRender = true; return; }
+    renderAll();
   }
+  function renderAll() { renderPeople(); renderBoard(); }
 
   /* ===== rendering ===== */
   function noteIcon() { return '<span class="note-ic" title="Has notes"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M5 4h14v13l-4 4H5z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M15 21v-4h4M8 9.5h8M8 13.5h5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>'; }
@@ -432,8 +442,6 @@
     var done = laneCardsSorted("done");
     fillLane(document.querySelector('.lane-body[data-lane="done"]'), done, "done"); setCount("done", done.length);
   }
-  function scheduleRender() { if (state.isDragging) { state.pendingRender = true; return; } renderBoard(); }
-
   /* ===== editor ===== */
   function buildSeg(id, items, color) { var html = ""; for (var i = 0; i < items.length; i++) html += '<button type="button" class="seg-btn' + (color ? " p-" + items[i].key : "") + '" data-value="' + items[i].key + '">' + esc(items[i].label) + '</button>'; document.getElementById(id).innerHTML = html; }
   function syncSeg(id, value) { var b = document.getElementById(id).querySelectorAll(".seg-btn"); for (var i = 0; i < b.length; i++) b[i].classList.toggle("active", b[i].dataset.value === value); }
@@ -525,6 +533,9 @@
   function toggleTheme() { var next = currentTheme() === "dark" ? "light" : "dark"; document.documentElement.setAttribute("data-theme", next); try { localStorage.setItem("omr-theme", next); } catch (e) {} updateThemeBtn(); }
 
   /* ===== settings ===== */
+  function loadSort() { var s = null; try { s = localStorage.getItem("omr-sort"); } catch (e) {} return (s === "priority" || s === "difficulty") ? s : "manual"; }
+  function updateSortBtn() { var b = $("#sort-btn"); if (b) b.textContent = "Sort: " + (state.sortMode === "manual" ? "Manual" : cap(state.sortMode)); }
+  function cycleSort() { var modes = ["manual", "priority", "difficulty"]; state.sortMode = modes[(modes.indexOf(state.sortMode) + 1) % 3]; try { localStorage.setItem("omr-sort", state.sortMode); } catch (e) {} updateSortBtn(); renderBoard(); }
   function loadToken() { try { return localStorage.getItem("omr-gh-token") || null; } catch (e) { return null; } }
   function storeToken(t) { try { if (t) localStorage.setItem("omr-gh-token", t); else localStorage.removeItem("omr-gh-token"); } catch (e) {} }
   function openSettings() {
@@ -556,6 +567,8 @@
     $("#settings-btn").addEventListener("click", openSettings);
     $("#banner-settings").addEventListener("click", openSettings);
     $("#new-task").addEventListener("click", function () { openEditor(null, { assignee: "", done: false }); });
+    state.sortMode = loadSort(); updateSortBtn();
+    $("#sort-btn").addEventListener("click", cycleSort);
 
     var board = $(".board");
     board.addEventListener("click", function (e) {
@@ -581,17 +594,21 @@
     board.addEventListener("dragend", function (e) {
       var card = e.target.closest(".card"); if (card) card.classList.remove("dragging");
       state.isDragging = false; state.draggingId = null; clearMarker();
-      if (state.pendingRender) { state.pendingRender = false; renderBoard(); }
+      if (state.pendingRender) { state.pendingRender = false; renderAll(); }
     });
     board.addEventListener("dragover", function (e) {
-      var body = e.target.closest(".lane-body"); if (!body || !state.draggingId) return;
+      if (!state.draggingId) return;
+      var lane = e.target.closest(".lane"); if (!lane) { clearMarker(); return; }
+      var body = lane.querySelector(".lane-body"); if (!body) return;
       e.preventDefault(); if (e.dataTransfer) e.dataTransfer.dropEffect = "move"; clearMarker();
-      var lane = body.closest(".lane"); if (lane && lane.classList.contains("person")) lane.classList.add("drop-hot");
+      if (lane.classList.contains("person")) lane.classList.add("drop-hot");
       var ref = insertRef(body, e.clientX, e.clientY), line = getLine();
       if (ref) body.insertBefore(line, ref); else body.appendChild(line);
     });
     board.addEventListener("drop", function (e) {
-      var body = e.target.closest(".lane-body"); if (!body || !state.draggingId) return;
+      if (!state.draggingId) return;
+      var lane = e.target.closest(".lane"); if (!lane) return;
+      var body = lane.querySelector(".lane-body"); if (!body) return;
       e.preventDefault(); clearMarker(); handleDrop(body, e.clientX, e.clientY);
     });
 
