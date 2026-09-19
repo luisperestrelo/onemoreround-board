@@ -147,6 +147,18 @@
       "id": "c_mu8r9pqf1joc6",
       "order": 4000,
       "createdAt": 1789844612487
+    },
+    {
+      "title": "Add knockback to Candlekeeper melee attack",
+      "priority": "spare",
+      "difficulty": "low",
+      "assignee": "",
+      "done": false,
+      "notes": "",
+      "updatedAt": 1789844782460,
+      "id": "c_mu8rdcvw0oydu",
+      "order": 5000,
+      "createdAt": 1789844782460
     }
   ]
 }
