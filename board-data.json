@@ -93,12 +93,12 @@
       "title": "Fix Totemic Bond (extra totem) UI",
       "priority": "low",
       "difficulty": "low",
-      "assignee": "",
+      "assignee": "Kruise",
       "done": false,
       "notes": "",
-      "order": 8000,
+      "order": 2500,
       "createdAt": 1789776007000,
-      "updatedAt": 1789776007000
+      "updatedAt": 1789840655534
     }
   ]
 }
