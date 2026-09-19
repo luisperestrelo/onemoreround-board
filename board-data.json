@@ -164,12 +164,12 @@
       "title": "Improve Curse Descriptions for the new Curses",
       "priority": "medium",
       "difficulty": "low",
-      "assignee": "",
+      "assignee": "Greyy",
       "done": false,
       "notes": "",
-      "updatedAt": 1789844793885,
+      "updatedAt": 1789844797093,
       "id": "c_mu8rdlp90n4ua",
-      "order": 6000,
+      "order": 3500,
       "createdAt": 1789844793885
     }
   ]
