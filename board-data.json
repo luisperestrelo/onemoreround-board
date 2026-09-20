@@ -279,6 +279,18 @@
       "id": "c_mu95og3dr7rd2",
       "order": 4000,
       "createdAt": 1789868814457
+    },
+    {
+      "title": "UI - Explicitly telling which skills it affects",
+      "priority": "medium",
+      "difficulty": "medium",
+      "assignee": "Kruise",
+      "done": false,
+      "notes": "",
+      "updatedAt": 1789869772063,
+      "id": "c_mu968yzj6rw49",
+      "order": 4000,
+      "createdAt": 1789869772063
     }
   ]
 }
