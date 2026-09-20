@@ -298,11 +298,11 @@
       "priority": "medium",
       "difficulty": "unknown",
       "assignee": "",
-      "done": false,
+      "done": true,
       "notes": "Live playtest: Fire II and III burning ground feels too weak. Crossing the fire should apply a Burn debuff that continues hurting the player for a few seconds after leaving it.",
-      "order": 7000,
+      "order": 2250,
       "createdAt": 1789876133229,
-      "updatedAt": 1789876133229
+      "updatedAt": 1789881578180
     },
     {
       "id": "candlewick-trail-disappears-alive",
