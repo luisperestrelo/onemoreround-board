@@ -351,6 +351,18 @@
       "id": "c_mu9cdl94uqcv9",
       "order": 10000,
       "createdAt": 1789880065240
+    },
+    {
+      "title": "Add Essence Icon To View Roll Chances",
+      "priority": "medium",
+      "difficulty": "low",
+      "assignee": "Greyy",
+      "done": false,
+      "notes": "",
+      "updatedAt": 1789881276279,
+      "id": "c_mu9d3jp30299h",
+      "order": 6000,
+      "createdAt": 1789881276279
     }
   ]
 }
