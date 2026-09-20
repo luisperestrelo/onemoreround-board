@@ -219,6 +219,18 @@
       "id": "c_mu93f5bgfnyay",
       "order": 3500,
       "createdAt": 1789865021356
+    },
+    {
+      "title": "Take a look at armour/amulet base values",
+      "priority": "low",
+      "difficulty": "low",
+      "assignee": "",
+      "done": false,
+      "notes": "",
+      "updatedAt": 1789865786104,
+      "id": "c_mu93vjeg2nzb8",
+      "order": 6000,
+      "createdAt": 1789865786104
     }
   ]
 }
