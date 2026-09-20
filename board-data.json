@@ -471,6 +471,18 @@
       "order": 11000,
       "createdAt": 1789882701397,
       "updatedAt": 1789882701397
+    },
+    {
+      "id": "publish-game-code-upload-401",
+      "title": "Investigate published build missing game code",
+      "priority": "high",
+      "difficulty": "unknown",
+      "assignee": "",
+      "done": false,
+      "notes": "20 September: live build showed \"This game has no precompiled assemblies or code archives!\" Luis reverted to the previous published build. Small read-only investigation found direct evidence in sbox-dev.log at 06:40:59: uploading .bin/package.anarchy.spellslinger.cll failed with HTTP 401 Unauthorized. At 06:41:02 publisher reports incomplete uploads and that file False. Client then fails during PackageManager.InstallAsync before game startup; older build subsequently reaches gameplay at 06:44. This points to failed authenticated publishing, not a demonstrated gameplay regression. No code or live-package changes made. Before the next attempt, restart the editor to refresh the publishing session and verify that the code upload completes successfully. Whether the 401 came from an expired session or the service is unconfirmed.",
+      "order": 12000,
+      "createdAt": 1789883173381,
+      "updatedAt": 1789883173381
     }
   ]
 }
