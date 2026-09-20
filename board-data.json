@@ -430,11 +430,11 @@
       "priority": "medium",
       "difficulty": "low",
       "assignee": "",
-      "done": false,
+      "done": true,
       "notes": "Live feedback: Coven III Cinderwick frequency should be nerfed a little. Currently adds 2 at the start, then schedules another pair 30 seconds after arrival, with a 1.2-second warning; same timing at all tiers. Suggested tuning: 40 seconds at III only, because its fire persists until round end. Timing has not been changed yet.",
-      "order": 13000,
+      "order": 2000,
       "createdAt": 1789882130730,
-      "updatedAt": 1789882130730
+      "updatedAt": 1789882288087
     },
     {
       "title": "Add a \"basic attack\" to Veilknives, triple or even more the cooldown of their shadowstep",
