@@ -82,11 +82,11 @@
       "priority": "medium",
       "difficulty": "low",
       "assignee": "Greyy",
-      "done": false,
+      "done": true,
       "notes": "",
-      "order": 3000,
+      "order": 2000,
       "createdAt": 1789776006000,
-      "updatedAt": 1789840637024
+      "updatedAt": 1789879169592
     },
     {
       "id": "totemic-bond-ui",
