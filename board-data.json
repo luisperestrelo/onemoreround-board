@@ -507,6 +507,18 @@
       "id": "c_mu9fx0v9b440t",
       "order": 3375,
       "createdAt": 1789886010789
+    },
+    {
+      "title": "Totems should despawn when a round starts. Anything temporary should",
+      "priority": "medium",
+      "difficulty": "low",
+      "assignee": "Greyy",
+      "done": false,
+      "notes": "",
+      "updatedAt": 1789913884819,
+      "id": "c_mu9wiglw6i2pr",
+      "order": 8000,
+      "createdAt": 1789913884820
     }
   ]
 }
