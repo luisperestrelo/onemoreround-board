@@ -478,11 +478,23 @@
       "priority": "high",
       "difficulty": "unknown",
       "assignee": "",
-      "done": false,
-      "notes": "20 September: live build showed \"This game has no precompiled assemblies or code archives!\" Luis reverted to the previous published build. Small read-only investigation found direct evidence in sbox-dev.log at 06:40:59: uploading .bin/package.anarchy.spellslinger.cll failed with HTTP 401 Unauthorized. At 06:41:02 publisher reports incomplete uploads and that file False. Client then fails during PackageManager.InstallAsync before game startup; older build subsequently reaches gameplay at 06:44. This points to failed authenticated publishing, not a demonstrated gameplay regression. No code or live-package changes made. Before the next attempt, restart the editor to refresh the publishing session and verify that the code upload completes successfully. Whether the 401 came from an expired session or the service is unconfirmed.",
+      "done": true,
+      "notes": "20 September: live build showed \"This game has no precompiled assemblies or code archives!\" Luis reverted to the previous published build. Small read-only investigation found direct evidence in sbox-dev.log at 06:40:59: uploading .bin/package.anarchy.spellslinger.cll failed with HTTP 401 Unauthorized. At 06:41:02 publisher reports incomplete uploads and that file False. Client then fails during PackageManager.InstallAsync before game startup; older build subsequently reaches gameplay at 06:44. This points to failed authenticated publishing, not a demonstrated gameplay regression. No code or live-package changes made. Before the next attempt, restart the editor to refresh the publishing session and verify that the code upload completes successfully. Whether the 401 came from an expired session or the service is unconfirmed.\nFollow-up: Luis reports publishing is working again after the restart/retry suggestion.",
       "order": 12000,
       "createdAt": 1789883173381,
-      "updatedAt": 1789883173381
+      "updatedAt": 1789884763885
+    },
+    {
+      "id": "hollow-idol-round-23-drop-check",
+      "title": "Check Hollow Idol availability after 23-round dry streak",
+      "priority": "low",
+      "difficulty": "low",
+      "assignee": "",
+      "done": true,
+      "notes": "Read-only source investigation: Hollow Idol remains one of 16 equally likely equipment bases; no new eligibility, ownership, curse or progression restriction. Round 1 excludes the two starter spells, leaving Idol at 1/14 when it was not the starter relic; subsequent drops are 1/16. With boss rewards at 5/15 and a 20% extra-item chance each round, zero Idol drops after 22-23 completed rounds is about 15-16% conditional on starting without one. A plausible RNG streak; no loot changes made.",
+      "order": 13000,
+      "createdAt": 1789884763885,
+      "updatedAt": 1789884763885
     }
   ]
 }
