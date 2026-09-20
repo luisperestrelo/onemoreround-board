@@ -423,6 +423,18 @@
       "order": 12000,
       "createdAt": 1789882074081,
       "updatedAt": 1789882074081
+    },
+    {
+      "id": "coven-iii-reinforcement-frequency",
+      "title": "Reduce Coven III reinforcement frequency",
+      "priority": "medium",
+      "difficulty": "low",
+      "assignee": "",
+      "done": false,
+      "notes": "Live feedback: Coven III Cinderwick frequency should be nerfed a little. Currently adds 2 at the start, then schedules another pair 30 seconds after arrival, with a 1.2-second warning; same timing at all tiers. Suggested tuning: 40 seconds at III only, because its fire persists until round end. Timing has not been changed yet.",
+      "order": 13000,
+      "createdAt": 1789882130730,
+      "updatedAt": 1789882130730
     }
   ]
 }
