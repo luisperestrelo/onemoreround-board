@@ -459,6 +459,18 @@
       "order": 1625,
       "createdAt": 1789882306752,
       "updatedAt": 1789882383976
+    },
+    {
+      "id": "mud-iii-remove-flask-drain-visual",
+      "title": "Remove Mud III flask-drain visual",
+      "priority": "low",
+      "difficulty": "low",
+      "assignee": "",
+      "done": false,
+      "notes": "Implemented locally: removed the blue flask-drain progress ring and empty-flask particle flash around the player. Mud III still slows and drains flask charges at the existing rate. The fire-above-Mud rendering fix is retained. Both assemblies and the native Mud shader compile; all 49 existing Decay/Mud clock checks pass. Not published by this task.",
+      "order": 11000,
+      "createdAt": 1789882701397,
+      "updatedAt": 1789882701397
     }
   ]
 }
