@@ -363,6 +363,30 @@
       "id": "c_mu9d3jp30299h",
       "order": 6000,
       "createdAt": 1789881276279
+    },
+    {
+      "id": "mud-slowed-label",
+      "title": "Rename Mud debuff from Mired to Slowed",
+      "priority": "low",
+      "difficulty": "low",
+      "assignee": "",
+      "done": false,
+      "notes": "Requested HUD wording change. Implemented locally: Mud now displays Slowed.",
+      "order": 11000,
+      "createdAt": 1789881416367,
+      "updatedAt": 1789881416367
+    },
+    {
+      "id": "cinderwick-fire-above-mud",
+      "title": "Keep Cinderwick fire visible above Mud",
+      "priority": "medium",
+      "difficulty": "unknown",
+      "assignee": "",
+      "done": false,
+      "notes": "Live playtest: the fire line renders underneath Mud. Reproduced in a native overlap capture; correcting the rendering order for temporary trails and permanent Coven III fire.",
+      "order": 12000,
+      "createdAt": 1789881416367,
+      "updatedAt": 1789881416367
     }
   ]
 }
