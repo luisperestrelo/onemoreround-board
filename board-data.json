@@ -382,11 +382,11 @@
       "priority": "medium",
       "difficulty": "unknown",
       "assignee": "",
-      "done": false,
+      "done": true,
       "notes": "Live playtest: the fire line renders underneath Mud. Reproduced in a native overlap capture; correcting the rendering order for temporary trails and permanent Coven III fire.",
-      "order": 12000,
+      "order": 2000,
       "createdAt": 1789881416367,
-      "updatedAt": 1789881416367
+      "updatedAt": 1789881585585
     },
     {
       "title": "Leaderboard Bullshit",
