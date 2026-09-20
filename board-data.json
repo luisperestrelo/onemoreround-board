@@ -312,9 +312,9 @@
       "assignee": "",
       "done": false,
       "notes": "Live playtest: Candlewick flaming trails randomly disappear while the Candlewick is still alive. Observed with Coven II active; whether this also happens without the curse is unknown.",
-      "order": 8000,
+      "order": 4000,
       "createdAt": 1789876133229,
-      "updatedAt": 1789876133229
+      "updatedAt": 1789876393903
     },
     {
       "id": "boss-beam-intermission-gap",
