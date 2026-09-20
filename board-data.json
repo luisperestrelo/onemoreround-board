@@ -406,11 +406,11 @@
       "priority": "low",
       "difficulty": "low",
       "assignee": "",
-      "done": false,
+      "done": true,
       "notes": "Live playtest: show DPS instead of values such as 14.31 every 0.4 s. Implemented locally: Wildfire burn is converted using its tick interval; poison, ordinary burn and spectral lingering damage consistently show DPS. Damage mechanics are unchanged. Not published by this task.",
-      "order": 11000,
+      "order": 2000,
       "createdAt": 1789881644654,
-      "updatedAt": 1789881644654
+      "updatedAt": 1789882277580
     },
     {
       "id": "stone-ii-no-extra-rocks",
