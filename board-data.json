@@ -272,12 +272,12 @@
       "title": "Make loot pick-up happen when you cross into the nameplate",
       "priority": "medium",
       "difficulty": "low",
-      "assignee": "",
+      "assignee": "Greyy",
       "done": false,
       "notes": "",
-      "updatedAt": 1789868814457,
+      "updatedAt": 1789868820078,
       "id": "c_mu95og3dr7rd2",
-      "order": 8000,
+      "order": 4000,
       "createdAt": 1789868814457
     }
   ]
