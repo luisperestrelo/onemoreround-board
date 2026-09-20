@@ -370,11 +370,11 @@
       "priority": "low",
       "difficulty": "low",
       "assignee": "",
-      "done": false,
+      "done": true,
       "notes": "Requested HUD wording change. Implemented locally: Mud now displays Slowed.",
-      "order": 11000,
+      "order": 2125,
       "createdAt": 1789881416367,
-      "updatedAt": 1789881416367
+      "updatedAt": 1789881611586
     },
     {
       "id": "cinderwick-fire-above-mud",
