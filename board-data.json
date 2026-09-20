@@ -454,11 +454,11 @@
       "priority": "medium",
       "difficulty": "low",
       "assignee": "",
-      "done": false,
+      "done": true,
       "notes": "Implemented locally: equipping Moonreave with Waxing Moon now shows explosion damage, explosion radius and the every-four-hits trigger in the Character tab. Values include equipped damage and area bonuses. Added regression checks for base, scaled and inactive cases; damage behavior is unchanged. Not published by this task.",
-      "order": 11000,
+      "order": 1625,
       "createdAt": 1789882306752,
-      "updatedAt": 1789882306752
+      "updatedAt": 1789882383976
     }
   ]
 }
