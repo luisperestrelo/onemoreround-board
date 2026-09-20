@@ -261,11 +261,11 @@
       "priority": "low",
       "difficulty": "low",
       "assignee": "Greyy",
-      "done": false,
+      "done": true,
       "notes": "",
-      "updatedAt": 1789868671584,
+      "updatedAt": 1789881552728,
       "id": "c_mu95lb9kxgbiv",
-      "order": 3500,
+      "order": 1500,
       "createdAt": 1789868668232
     },
     {
