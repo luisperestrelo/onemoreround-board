@@ -387,6 +387,18 @@
       "order": 12000,
       "createdAt": 1789881416367,
       "updatedAt": 1789881416367
+    },
+    {
+      "title": "Leaderboard Bullshit",
+      "priority": "high",
+      "difficulty": "unknown",
+      "assignee": "Kruise",
+      "done": false,
+      "notes": "",
+      "updatedAt": 1789881526849,
+      "id": "c_mu9d8x1dt8dex",
+      "order": 6000,
+      "createdAt": 1789881526849
     }
   ]
 }
