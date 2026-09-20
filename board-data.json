@@ -358,8 +358,8 @@
       "difficulty": "low",
       "assignee": "Greyy",
       "done": false,
-      "notes": "",
-      "updatedAt": 1789881276279,
+      "notes": "Implemented locally: the Ash, Glass, Thorn and Dusk headings in View roll chances each show their matching Essence icon. Uses the existing inventory/crafting Essence artwork. Not published by this task.",
+      "updatedAt": 1789881644654,
       "id": "c_mu9d3jp30299h",
       "order": 6000,
       "createdAt": 1789881276279
@@ -383,10 +383,10 @@
       "difficulty": "unknown",
       "assignee": "",
       "done": true,
-      "notes": "Live playtest: the fire line renders underneath Mud. Reproduced in a native overlap capture; correcting the rendering order for temporary trails and permanent Coven III fire.",
+      "notes": "Live playtest: the fire line renders underneath Mud. Reproduced and fixed locally for temporary trails and permanent Coven III fire. Inspected native before/after captures from four directions; the flask-drain ring and opaque-object occlusion remain intact. Not published by this task.",
       "order": 2000,
       "createdAt": 1789881416367,
-      "updatedAt": 1789881585585
+      "updatedAt": 1789881644654
     },
     {
       "title": "Leaderboard Bullshit",
@@ -399,6 +399,18 @@
       "id": "c_mu9d8x1dt8dex",
       "order": 6000,
       "createdAt": 1789881526849
+    },
+    {
+      "id": "damage-over-time-tooltip-dps",
+      "title": "Show damage-over-time stats as DPS",
+      "priority": "low",
+      "difficulty": "low",
+      "assignee": "",
+      "done": false,
+      "notes": "Live playtest: show DPS instead of values such as 14.31 every 0.4 s. Implemented locally: Wildfire burn is converted using its tick interval; poison, ordinary burn and spectral lingering damage consistently show DPS. Damage mechanics are unchanged. Not published by this task.",
+      "order": 11000,
+      "createdAt": 1789881644654,
+      "updatedAt": 1789881644654
     }
   ]
 }
