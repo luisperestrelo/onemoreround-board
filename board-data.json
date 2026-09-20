@@ -187,11 +187,11 @@
     {
       "title": "Buff Relics",
       "priority": "medium",
-      "difficulty": "low",
+      "difficulty": "medium",
       "assignee": "Greyy",
       "done": false,
       "notes": "",
-      "updatedAt": 1789849774254,
+      "updatedAt": 1789873485086,
       "id": "c_mu8ttt9glpqrc",
       "order": 2500,
       "createdAt": 1789848909412
