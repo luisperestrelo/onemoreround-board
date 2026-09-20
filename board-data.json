@@ -339,6 +339,18 @@
       "id": "c_mu9ago4fwjmym",
       "order": 5000,
       "createdAt": 1789876849695
+    },
+    {
+      "title": "Small Indicator of where your TP is on Alter Time",
+      "priority": "spare",
+      "difficulty": "low",
+      "assignee": "",
+      "done": false,
+      "notes": "",
+      "updatedAt": 1789880065240,
+      "id": "c_mu9cdl94uqcv9",
+      "order": 10000,
+      "createdAt": 1789880065240
     }
   ]
 }
