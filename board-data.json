@@ -500,12 +500,12 @@
       "title": "Totem Control Scheme - just put both on E, fix HUD",
       "priority": "medium",
       "difficulty": "low",
-      "assignee": "",
+      "assignee": "Greyy",
       "done": false,
       "notes": "",
-      "updatedAt": 1789886010789,
+      "updatedAt": 1789886013181,
       "id": "c_mu9fx0v9b440t",
-      "order": 12000,
+      "order": 3375,
       "createdAt": 1789886010789
     }
   ]
