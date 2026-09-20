@@ -418,11 +418,11 @@
       "priority": "medium",
       "difficulty": "low",
       "assignee": "",
-      "done": false,
+      "done": true,
       "notes": "Implemented locally: Stone II retains 3 ordinary rocks, with its existing damage and radius increase. Stone III inherits those 3 and adds its existing predictive rock, for 4 total. Card descriptions updated. Not published by this task.",
-      "order": 12000,
+      "order": 1625,
       "createdAt": 1789882074081,
-      "updatedAt": 1789882074081
+      "updatedAt": 1789882296146
     },
     {
       "id": "coven-iii-reinforcement-frequency",
