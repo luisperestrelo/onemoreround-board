@@ -212,12 +212,12 @@
       "title": "Fix Festermaw Chunk Bug (They dont do damage the whole flight)",
       "priority": "medium",
       "difficulty": "medium",
-      "assignee": "",
+      "assignee": "Greyy",
       "done": false,
       "notes": "",
-      "updatedAt": 1789865021356,
+      "updatedAt": 1789865024823,
       "id": "c_mu93f5bgfnyay",
-      "order": 6000,
+      "order": 3500,
       "createdAt": 1789865021356
     }
   ]
