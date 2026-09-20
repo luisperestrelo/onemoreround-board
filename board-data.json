@@ -291,6 +291,42 @@
       "id": "c_mu968yzj6rw49",
       "order": 4000,
       "createdAt": 1789869772063
+    },
+    {
+      "id": "fire-ii-iii-lingering-burn",
+      "title": "Make Fire II and III apply a lingering Burn",
+      "priority": "medium",
+      "difficulty": "unknown",
+      "assignee": "",
+      "done": false,
+      "notes": "Live playtest: Fire II and III burning ground feels too weak. Crossing the fire should apply a Burn debuff that continues hurting the player for a few seconds after leaving it.",
+      "order": 7000,
+      "createdAt": 1789876133229,
+      "updatedAt": 1789876133229
+    },
+    {
+      "id": "candlewick-trail-disappears-alive",
+      "title": "Fix Candlewick flame trails disappearing while alive",
+      "priority": "medium",
+      "difficulty": "unknown",
+      "assignee": "",
+      "done": false,
+      "notes": "Live playtest: Candlewick flaming trails randomly disappear while the Candlewick is still alive. Observed with Coven II active; whether this also happens without the curse is unknown.",
+      "order": 8000,
+      "createdAt": 1789876133229,
+      "updatedAt": 1789876133229
+    },
+    {
+      "id": "boss-beam-intermission-gap",
+      "title": "Fix back-to-back boss beam intermissions",
+      "priority": "medium",
+      "difficulty": "unknown",
+      "assignee": "",
+      "done": false,
+      "notes": "Live playtest: the boss entered the beam intermission phase back to back despite the intended minimum number of seconds between intermissions. Ensure the full minimum gap is respected after an intermission ends.",
+      "order": 9000,
+      "createdAt": 1789876133229,
+      "updatedAt": 1789876133229
     }
   ]
 }
