@@ -322,11 +322,11 @@
       "priority": "medium",
       "difficulty": "unknown",
       "assignee": "",
-      "done": false,
+      "done": true,
       "notes": "Live playtest: the boss entered the beam intermission phase back to back despite the intended minimum number of seconds between intermissions. Ensure the full minimum gap is respected after an intermission ends.",
-      "order": 9000,
+      "order": 2000,
       "createdAt": 1789876133229,
-      "updatedAt": 1789876133229
+      "updatedAt": 1789881601512
     },
     {
       "title": "Life Flask Popup",
