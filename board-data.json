@@ -248,12 +248,12 @@
       "title": "fix hover card bug when cursor is at the bottom edge",
       "priority": "low",
       "difficulty": "low",
-      "assignee": "",
+      "assignee": "Greyy",
       "done": false,
       "notes": "",
-      "updatedAt": 1789867563581,
+      "updatedAt": 1789873710829,
       "id": "c_mu94xmwtes8t1",
-      "order": 7000,
+      "order": 1750,
       "createdAt": 1789867563581
     },
     {
