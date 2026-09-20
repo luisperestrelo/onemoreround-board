@@ -519,6 +519,18 @@
       "id": "c_mu9wiglw6i2pr",
       "order": 8000,
       "createdAt": 1789913884820
+    },
+    {
+      "title": "Main Menu Bug",
+      "priority": "extreme",
+      "difficulty": "unknown",
+      "assignee": "Kruise",
+      "done": false,
+      "notes": "",
+      "updatedAt": 1789922213105,
+      "id": "c_mua1gyr51f75m",
+      "order": 7000,
+      "createdAt": 1789922213105
     }
   ]
 }
