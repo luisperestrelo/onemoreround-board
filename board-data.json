@@ -165,11 +165,11 @@
       "priority": "medium",
       "difficulty": "low",
       "assignee": "Greyy",
-      "done": false,
+      "done": true,
       "notes": "",
-      "updatedAt": 1789873791700,
+      "updatedAt": 1789873823612,
       "id": "c_mu8rdlp90n4ua",
-      "order": 3500,
+      "order": 1000,
       "createdAt": 1789844793885
     },
     {
