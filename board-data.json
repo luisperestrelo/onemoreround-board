@@ -441,11 +441,11 @@
       "priority": "medium",
       "difficulty": "unknown",
       "assignee": "Greyy",
-      "done": false,
+      "done": true,
       "notes": "Also make them not insta cast shadowstep as soon as they spawn, and give it some variance so they dont all do it at the same time",
-      "updatedAt": 1789882265546,
+      "updatedAt": 1789990466327,
       "id": "c_mu9dor0q778l0",
-      "order": 7000,
+      "order": 1562.5,
       "createdAt": 1789882265546
     },
     {
