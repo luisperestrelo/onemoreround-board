@@ -357,11 +357,11 @@
       "priority": "medium",
       "difficulty": "low",
       "assignee": "Greyy",
-      "done": false,
+      "done": true,
       "notes": "Implemented locally: the Ash, Glass, Thorn and Dusk headings in View roll chances each show their matching Essence icon. Uses the existing inventory/crafting Essence artwork. Not published by this task.",
-      "updatedAt": 1789881644654,
+      "updatedAt": 1789990448274,
       "id": "c_mu9d3jp30299h",
-      "order": 6000,
+      "order": 8812.5,
       "createdAt": 1789881276279
     },
     {
