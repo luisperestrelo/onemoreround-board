@@ -129,11 +129,11 @@
       "priority": "spare",
       "difficulty": "medium",
       "assignee": "Kruise",
-      "done": false,
+      "done": true,
       "notes": "Idk i think crafting is so intuitive already loool maybe not the essence stuff but the very basic click a button get mods is so straightforward",
-      "updatedAt": 1790177719338,
+      "updatedAt": 1790177724320,
       "id": "c_mu8r8tb5u077e",
-      "order": 3750,
+      "order": 10906.25,
       "createdAt": 1789844570465
     },
     {
