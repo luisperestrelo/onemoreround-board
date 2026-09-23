@@ -213,11 +213,11 @@
       "priority": "medium",
       "difficulty": "medium",
       "assignee": "Greyy",
-      "done": false,
+      "done": true,
       "notes": "",
-      "updatedAt": 1789865024823,
+      "updatedAt": 1790177646262,
       "id": "c_mu93f5bgfnyay",
-      "order": 3500,
+      "order": 10906.25,
       "createdAt": 1789865021356
     },
     {
