@@ -513,11 +513,11 @@
       "priority": "medium",
       "difficulty": "low",
       "assignee": "Greyy",
-      "done": false,
+      "done": true,
       "notes": "",
-      "updatedAt": 1789913884819,
+      "updatedAt": 1790177680196,
       "id": "c_mu9wiglw6i2pr",
-      "order": 8000,
+      "order": 8250,
       "createdAt": 1789913884820
     },
     {
